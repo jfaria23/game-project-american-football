@@ -4,36 +4,38 @@
   border: 4px solid green;
   margin: auto;
   position: relative;
-  background-image: url(./download.jpeg);
+  background-image: url("./download.jpeg");
   background-size: 1000px 500px;
 }
 
 h1 {
   text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: aliceblue;
 }
 h2 {
   text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: aliceblue;
 }
 .player {
   width: 100px;
   height: 100px;
-  background-image: url();
+  background-image: url("./playerReady.png");
   background-size: 100px 100px;
 }
 
-.defender {
+.defenders {
   width: 130px;
   height: 100px;
-  background-image: url();
-  background-size: 130px 100px;
+  background-image: url("./defenderReady.png");
+  background-size: 100px 100px;
 }
 
 .balls {
   width: 100px;
   height: 100px;
-  background-image: url();
+  background-image: url("./ballReady.png");
   background-size: 100px 100px;
 }
 
@@ -41,4 +43,8 @@ h2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+body {
+  background-color: black;
 }
