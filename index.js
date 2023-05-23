@@ -28,11 +28,11 @@ class Player {
     }
   }
   moveDown() {
-    if (this.positionY >= 0 && this.positionY < 70) {
+    if (this.positionY >= 0 && this.positionY < 40) {
       this.positionY = this.positionY + 10;
       this.element.style.top = this.positionY + "vh";
     } else {
-      this.positionY = 70;
+      this.positionY = 40;
     }
   }
 }
@@ -42,31 +42,31 @@ class Defenders {
   constructor() {
     this.width = 10;
     this.height = 20;
-    this.positionX = 90;
-    this.positionY = 50; //math random Math.floor(Math.random() * (100 - this.height + 1)) ?
+    this.positionX = 30;
+    this.positionY = Math.floor(Math.random() * (70 - this.height));
 
-    this.element = document.createElement("div");
-    this.element.classList.add("defenders");
-    this.element.style.width = this.width + "vw";
-    this.element.style.height = this.height + "vh";
-    this.element.style.position = "absolute";
-    this.element.style.top = this.positionY + "vh";
-    this.element.style.left = this.positionX + "vw";
+    this.domElement = document.createElement("div");
+    this.domElement.classList.add("defenders");
+    this.domElement.style.width = this.width + "vw";
+    this.domElement.style.height = this.height + "vh";
+    this.domElement.style.position = "absolute";
+    this.domElement.style.top = this.positionY + "vh";
+    this.domElement.style.left = this.positionX + "vw";
 
     this.board = document.querySelector("#game-pitch");
-    this.board.appendChild(this.element);
+    this.board.appendChild(this.domElement);
   }
+  createDefenders() {
+    const parentElm = document.getElementById("game-pitch");
+    this.domElement.className = "defenders";
+  }
+
   moveLeft() {
-    this.positionX -= 20;
-    this.element.style.left = this.positionX + "vw";
+    this.positionX--;
+    this.domElement.style.left = this.positionX + "vw";
   }
 }
 
-// createDefenders(){
-//   this.domElement = document.createElement("div")
-//   this.domElement.className = "defenders";
-
-// }
 setInterval(() => {
   const newDefender = new Defenders();
 }, 4000);
