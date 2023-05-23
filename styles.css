@@ -20,26 +20,26 @@ h2 {
   color: aliceblue;
 }
 .player {
-  width: 100px;
-  height: 100px;
   background-image: url("./playerReady.png");
-  background-size: 100px 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .defenders {
-  width: 100px;
-  height: 100px;
   background-image: url("./defenderReady.png");
-  background-size: 100px 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   transform: scaleX(-1);
 }
 
-.balls {
+/* .balls {
   width: 100px;
   height: 100px;
   background-image: url("./ballReady.png");
   background-size: 100px 100px;
-}
+} */
 
 body {
   background-color: silver;
