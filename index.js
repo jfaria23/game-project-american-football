@@ -28,11 +28,11 @@ class Player {
     }
   }
   moveDown() {
-    if (this.positionY >= 0 && this.positionY < 50) {
+    if (this.positionY >= 0 && this.positionY < 70) {
       this.positionY = this.positionY + 10;
       this.element.style.top = this.positionY + "vh";
     } else {
-      this.positionY = 50;
+      this.positionY = 70;
     }
   }
 }

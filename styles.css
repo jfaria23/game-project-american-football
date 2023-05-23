@@ -1,11 +1,13 @@
 #game-pitch {
   width: 1000px;
-  height: 500px;
+  height: 610px;
   border: 10px solid rgb(247, 9, 9);
   margin: auto;
   position: relative;
   background-image: url("./download.jpeg");
-  background-size: 1000px 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
 }
 
