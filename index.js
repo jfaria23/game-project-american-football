@@ -1,4 +1,22 @@
-class Game {}
+class Game {
+  constructor() {
+    this.player = new Player();
+    this.defenders = [];
+    this.startGame();
+  }
+  startGame() {
+    setInterval(() => {
+      const newDefender = new Defenders();
+      this.defenders.push(newDefender);
+    }, 4000);
+
+    setInterval(() => {
+      this.defenders.forEach((defenderElement) => {
+        defenderElement.moveLeft();
+      });
+    }, 60);
+  }
+}
 
 class Player {
   constructor() {
@@ -16,6 +34,21 @@ class Player {
     this.board = document.querySelector("#game-pitch");
     console.log(this.element);
     this.board.appendChild(this.element);
+
+    this.movePlayer();
+  }
+  movePlayer() {
+    document.addEventListener("keydown", (e) => {
+      console.log(e.key);
+      switch (e.key) {
+        case "ArrowUp":
+          this.moveUp();
+          break;
+        case "ArrowDown":
+          this.moveDown();
+          break;
+      }
+    });
   }
 
   moveUp() {
@@ -36,14 +69,13 @@ class Player {
     }
   }
 }
-const player1 = new Player();
 
 class Defenders {
   constructor() {
     this.width = 10;
     this.height = 20;
-    this.positionX = 30;
-    this.positionY = Math.floor(Math.random() * (70 - this.height));
+    this.positionX = 80;
+    this.positionY = Math.floor(Math.random() * (80 - this.height));
 
     this.domElement = document.createElement("div");
     this.domElement.classList.add("defenders");
@@ -67,21 +99,7 @@ class Defenders {
   }
 }
 
-setInterval(() => {
-  const newDefender = new Defenders();
-}, 4000);
-
-document.addEventListener("keydown", (e) => {
-  console.log(e.key);
-  switch (e.key) {
-    case "ArrowUp":
-      player1.moveUp();
-      break;
-    case "ArrowDown":
-      player1.moveDown();
-      break;
-  }
-});
+const newGame = new Game();
 
 // class Balls {
 //   constructor() {
