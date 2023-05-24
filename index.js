@@ -4,19 +4,54 @@ class Game {
     this.defenders = [];
     this.startGame();
   }
+
   startGame() {
     setInterval(() => {
       const newDefender = new Defenders();
       this.defenders.push(newDefender);
-    }, 4000);
+    }, 2500);
 
     setInterval(() => {
       this.defenders.forEach((defenderElement) => {
         defenderElement.moveLeft();
+        this.detectCollision(defenderElement);
+        this.removeObstacleIfOutside(defenderElement); //working fine!!
       });
     }, 60);
   }
+
+  detectCollision(defenderElement) {
+    //  console.log("in detect collision function");
+    // console.log("defenderElement :>> ", defenderElement);
+
+    if (
+      defenderElement.positionX < this.player.positionX + this.player.width &&
+      defenderElement.positionX + defenderElement.width >
+        this.player.positionX &&
+      defenderElement.positionY < this.player.positionY + this.player.height &&
+      defenderElement.height + defenderElement.positionY > this.player.positionY
+    ) {
+      console.log("game over my fren");
+      location.href = "./gameover.html";
+    }
+  }
+  removeObstacleIfOutside(defenderElement) {
+    if (defenderElement.positionX < 0 - defenderElement.width) {
+      //1. remove elm from the dom
+      defenderElement.domElement.remove();
+
+      //2. remove from the array of obstacles
+      this.defenders.shift();
+    }
+  }
 }
+
+// Detect collision
+
+//    // Detect if obstacle needs to be removed
+//     this.removeObstacleIfOutside(defenderElement);
+//   });
+// }, 60);
 
 class Player {
   constructor() {
