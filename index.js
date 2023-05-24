@@ -15,13 +15,13 @@ class Game {
       this.defenders.forEach((defenderElement) => {
         defenderElement.moveLeft();
         this.detectCollision(defenderElement);
-        this.removeObstacleIfOutside(defenderElement); //working fine!!
+        this.removeDefendersIfOutside(defenderElement); //working fine!!
       });
     }, 60);
   }
 
   detectCollision(defenderElement) {
-    //  console.log("in detect collision function");
+    //console.log("in detect collision function");
     // console.log("defenderElement :>> ", defenderElement);
 
     if (
@@ -32,10 +32,10 @@ class Game {
       defenderElement.height + defenderElement.positionY > this.player.positionY
     ) {
       console.log("game over my fren");
-      location.href = "./gameover.html";
+      location.href = "./gameOver.html";
     }
   }
-  removeObstacleIfOutside(defenderElement) {
+  removeDefendersIfOutside(defenderElement) {
     if (defenderElement.positionX < 0 - defenderElement.width) {
       //1. remove elm from the dom
       defenderElement.domElement.remove();
@@ -58,6 +58,7 @@ class Player {
     this.width = 10;
     this.height = 20;
     this.positionY = 30;
+    this.positionX = 0;
 
     this.element = document.createElement("div");
     this.element.classList.add("player");
@@ -65,6 +66,7 @@ class Player {
     this.element.style.height = this.height + "vh";
     this.element.style.position = "absolute";
     this.element.style.top = this.positionY + "vh";
+    this.element.style.left = this.positionX + "vw";
 
     this.board = document.querySelector("#game-pitch");
     console.log(this.element);
