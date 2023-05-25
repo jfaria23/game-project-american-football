@@ -1,4 +1,3 @@
-let score = 0;
 class Game {
   constructor() {
     this.player = new Player();
@@ -68,11 +67,7 @@ class Game {
       ballElement.positionY < this.player.positionY + this.player.height &&
       ballElement.height + ballElement.positionY > this.player.positionY
     ) {
-      this.ballGrab++;
-      console.log(this.ballGrab);
-      if (this.ballGrab / 9 === 3) {
-        location.href = "./gameWinner.html";
-      }
+      location.href = "./gameWinner.html";
     }
   }
   removeBallsIfOutside(ballElement) {
