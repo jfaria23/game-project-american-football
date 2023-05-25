@@ -1,10 +1,10 @@
 #game-pitch {
   width: 90vw;
-  height: 70vh;
-  border: 10px solid rgb(247, 9, 9);
+  height: 80vh;
+  border: 10px solid rgb(251, 248, 248);
   margin: auto;
   position: relative;
-  background-image: url("./download.jpeg");
+  background-image: url("./stadium.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13,13 +13,13 @@
 
 h1 {
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "Monserrat", sans-serif;
   color: aliceblue;
 }
 h2 {
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: aliceblue;
+  font-family: "Monserrat", sans-serif;
+  color: rgb(255, 242, 240);
 }
 .player {
   background-image: url("./playerReady.png");
@@ -36,12 +36,11 @@ h2 {
   transform: scaleX(-1);
 }
 
-/* .balls {
-  width: 100px;
-  height: 100px;
+.balls {
   background-image: url("./ballReady.png");
-  background-size: 100px 100px;
-} */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 body {
   background-color: silver;

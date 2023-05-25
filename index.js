@@ -2,28 +2,43 @@ class Game {
   constructor() {
     this.player = new Player();
     this.defenders = [];
+    this.balls = [];
     this.startGame();
   }
 
   startGame() {
     setInterval(() => {
+      //defenders
       const newDefender = new Defenders();
       this.defenders.push(newDefender);
     }, 1700);
 
     setInterval(() => {
+      //defenders
       this.defenders.forEach((defenderElement) => {
         defenderElement.moveLeft();
         this.detectCollision(defenderElement);
         this.removeDefendersIfOutside(defenderElement); //working fine!!
       });
     }, 60);
+
+    setInterval(() => {
+      //balls
+      const newBall = new Ball();
+      this.balls.push(newBall);
+    }, 10000);
+
+    setInterval(() => {
+      //balls
+      this.balls.forEach((ballElement) => {
+        ballElement.moveLeft();
+        this.detectBallCatches(ballElement);
+        this.removeBallsIfOutside(ballElement);
+      });
+    }, 30);
   }
 
   detectCollision(defenderElement) {
-    //console.log("in detect collision function");
-    // console.log("defenderElement :>> ", defenderElement);
-
     if (
       defenderElement.positionX < this.player.positionX + this.player.width &&
       defenderElement.positionX + defenderElement.width >
@@ -43,14 +58,26 @@ class Game {
       this.defenders.shift();
     }
   }
+  detectBallCatches(ballElement) {
+    if (
+      ballElement.positionX < this.player.positionX + this.player.width &&
+      ballElement.positionX + ballElement.width > this.player.positionX &&
+      ballElement.positionY < this.player.positionY + this.player.height &&
+      ballElement.height + ballElement.positionY > this.player.positionY
+    ) {
+      location.href = "./gameWinner.html";
+    }
+  }
+  removeBallsIfOutside(ballElement) {
+    if (ballElement.positionX < 0 - ballElement.width) {
+      //1. remove elm from the dom
+      ballElement.domElement.remove();
+
+      //2. remove from the array of obstacles
+      this.balls.shift();
+    }
+  }
 }
-
-// Detect collision
-
-//    // Detect if obstacle needs to be removed
-//     this.removeObstacleIfOutside(defenderElement);
-//   });
-// }, 60);
 
 class Player {
   constructor() {
@@ -96,7 +123,7 @@ class Player {
 
   moveUp() {
     if (this.positionY > 0 && this.positionY <= 100) {
-      this.positionY = this.positionY - 4;
+      this.positionY = this.positionY - 6;
       this.element.style.top = this.positionY + "vh";
     } else {
       this.positionY = 0;
@@ -104,11 +131,11 @@ class Player {
     }
   }
   moveDown() {
-    if (this.positionY >= 0 && this.positionY < 50) {
-      this.positionY = this.positionY + 4;
+    if (this.positionY >= 0 && this.positionY < 60) {
+      this.positionY = this.positionY + 6;
       this.element.style.top = this.positionY + "vh";
     } else {
-      this.positionY = 50;
+      this.positionY = 60;
     }
   }
   goForward() {
@@ -134,7 +161,7 @@ class Defenders {
     this.width = 5;
     this.height = 18;
     this.positionX = 90;
-    this.positionY = Math.floor(Math.random() * (70 - this.height));
+    this.positionY = Math.floor(Math.random() * (80 - this.height));
 
     this.domElement = document.createElement("div");
     this.domElement.classList.add("defenders");
@@ -159,24 +186,33 @@ class Defenders {
   }
 }
 
+class Ball {
+  constructor() {
+    this.width = 5;
+    this.height = 18;
+    this.positionX = 90;
+    this.positionY = Math.floor(Math.random() * (80 - this.height));
+
+    this.domElement = document.createElement("div");
+    this.domElement.classList.add("balls");
+    this.domElement.style.width = this.width + "vw";
+    this.domElement.style.height = this.height + "vh";
+    this.domElement.style.position = "absolute";
+    this.domElement.style.top = this.positionY + "vh";
+    this.domElement.style.left = this.positionX + "vw";
+    this.domElement.style.backgroundSize = "contain";
+
+    this.board = document.querySelector("#game-pitch");
+    this.board.appendChild(this.domElement);
+  }
+  createBalls() {
+    const parentElm = document.getElementById("game-pitch");
+    this.domElement.className = "balls";
+  }
+  moveLeft() {
+    this.positionX--;
+    this.domElement.style.left = this.positionX + "vw";
+  }
+}
+
 const newGame = new Game();
-
-// class Balls {
-//   constructor() {
-//     this.positionX = this.positionX;
-//     this.positionY = this.positionY;
-//     this.element = document.createElement("div");
-//     this.element.classList.add("balls");
-//     this.element.style.position = "absolute";
-//     this.element.style.top = this.positionY + "vh";
-//     this.element.style.left = this.positionX + "vw";
-
-//     this.board = document.querySelector("#game-pitch");
-//     this.board.appendChild(this.element);
-//   }
-//   moveLeft() {
-//     this.positionX -= 20;
-//     this.element.style.left = this.positionX + "vw";
-//   }
-// }
-// const newBall = new Balls();
