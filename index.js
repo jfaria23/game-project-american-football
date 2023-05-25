@@ -9,7 +9,7 @@ class Game {
     setInterval(() => {
       const newDefender = new Defenders();
       this.defenders.push(newDefender);
-    }, 2500);
+    }, 1700);
 
     setInterval(() => {
       this.defenders.forEach((defenderElement) => {
@@ -31,7 +31,6 @@ class Game {
       defenderElement.positionY < this.player.positionY + this.player.height &&
       defenderElement.height + defenderElement.positionY > this.player.positionY
     ) {
-      console.log("game over my fren");
       location.href = "./gameOver.html";
     }
   }
@@ -55,8 +54,8 @@ class Game {
 
 class Player {
   constructor() {
-    this.width = 10;
-    this.height = 20;
+    this.width = 5;
+    this.height = 18;
     this.positionY = 30;
     this.positionX = 0;
 
@@ -67,6 +66,7 @@ class Player {
     this.element.style.position = "absolute";
     this.element.style.top = this.positionY + "vh";
     this.element.style.left = this.positionX + "vw";
+    this.element.style.backgroundSize = "contain";
 
     this.board = document.querySelector("#game-pitch");
     console.log(this.element);
@@ -84,13 +84,19 @@ class Player {
         case "ArrowDown":
           this.moveDown();
           break;
+        case "ArrowRight":
+          this.goForward();
+          break;
+        case "ArrowLeft":
+          this.goBackwards();
+          break;
       }
     });
   }
 
   moveUp() {
     if (this.positionY > 0 && this.positionY <= 100) {
-      this.positionY = this.positionY - 10;
+      this.positionY = this.positionY - 4;
       this.element.style.top = this.positionY + "vh";
     } else {
       this.positionY = 0;
@@ -98,21 +104,37 @@ class Player {
     }
   }
   moveDown() {
-    if (this.positionY >= 0 && this.positionY < 40) {
-      this.positionY = this.positionY + 10;
+    if (this.positionY >= 0 && this.positionY < 50) {
+      this.positionY = this.positionY + 4;
       this.element.style.top = this.positionY + "vh";
     } else {
-      this.positionY = 40;
+      this.positionY = 50;
+    }
+  }
+  goForward() {
+    if (this.positionX >= 0 && this.positionX < 84) {
+      this.positionX = this.positionX + 4;
+      this.element.style.left = this.positionX + "vw";
+    } else {
+      this.positionX = 84;
+    }
+  }
+  goBackwards() {
+    if (this.positionX > 0 && this.positionX <= 84) {
+      this.positionX = this.positionX - 4;
+      this.element.style.left = this.positionX + "vw";
+    } else {
+      this.positionX = 0;
     }
   }
 }
 
 class Defenders {
   constructor() {
-    this.width = 10;
-    this.height = 20;
-    this.positionX = 80;
-    this.positionY = Math.floor(Math.random() * (80 - this.height));
+    this.width = 5;
+    this.height = 18;
+    this.positionX = 90;
+    this.positionY = Math.floor(Math.random() * (70 - this.height));
 
     this.domElement = document.createElement("div");
     this.domElement.classList.add("defenders");
@@ -121,6 +143,7 @@ class Defenders {
     this.domElement.style.position = "absolute";
     this.domElement.style.top = this.positionY + "vh";
     this.domElement.style.left = this.positionX + "vw";
+    this.domElement.style.backgroundSize = "contain";
 
     this.board = document.querySelector("#game-pitch");
     this.board.appendChild(this.domElement);

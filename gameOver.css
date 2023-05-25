@@ -1,16 +1,20 @@
 h1 {
-  background-color: #1d2c5f;
+  background-color: white;
   font-family: "Montserrat", sans-serif;
-  font-family: "Press Start 2P", cursive;
-  color: white;
+  color: #1d2c5f;
 }
-a {
-  background-color: #1d2c5f;
+.center {
+  background-color: white;
   font-family: "Montserrat", sans-serif;
-  font-family: "Press Start 2P", cursive;
-  color: white;
-  justify-content: center;
+  font-family: "Press Start 2P";
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h2 {
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
+  color: #1d2c5f;
   text-align: center;
-  position: fixed;
-  object-position: center;
 }

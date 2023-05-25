@@ -1,6 +1,6 @@
 #game-pitch {
-  width: 1000px;
-  height: 575px;
+  width: 90vw;
+  height: 70vh;
   border: 10px solid rgb(247, 9, 9);
   margin: auto;
   position: relative;
