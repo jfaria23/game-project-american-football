@@ -1,7 +1,7 @@
 h1 {
   background-color: white;
   font-family: "Montserrat", sans-serif;
-  color: #242421;
+  color: #1d2c5f;
 }
 .center {
   background-color: white;
@@ -13,6 +13,12 @@ h1 {
 }
 
 h2 {
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
+  color: #1d2c5f;
+  text-align: center;
+}
+h3 {
   background-color: white;
   font-family: "Montserrat", sans-serif;
   color: #1d2c5f;

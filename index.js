@@ -12,7 +12,7 @@ class Game {
       //defenders
       const newDefender = new Defenders();
       this.defenders.push(newDefender);
-    }, 1700);
+    }, 1200);
 
     setInterval(() => {
       //defenders
@@ -21,13 +21,13 @@ class Game {
         this.detectCollision(defenderElement);
         this.removeDefendersIfOutside(defenderElement); //working fine!!
       });
-    }, 60);
+    }, 50);
 
     setInterval(() => {
       //balls
       const newBall = new Ball();
       this.balls.push(newBall);
-    }, 10000);
+    }, 25000);
 
     setInterval(() => {
       //balls
@@ -36,7 +36,7 @@ class Game {
         this.detectBallCatches(ballElement);
         this.removeBallsIfOutside(ballElement);
       });
-    }, 30);
+    }, 100);
   }
 
   detectCollision(defenderElement) {
