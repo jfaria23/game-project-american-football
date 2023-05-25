@@ -1,9 +1,11 @@
+let score = 0;
 class Game {
   constructor() {
     this.player = new Player();
     this.defenders = [];
     this.balls = [];
     this.startGame();
+    this.ballGrab = 0;
   }
 
   startGame() {
@@ -58,6 +60,7 @@ class Game {
       this.defenders.shift();
     }
   }
+
   detectBallCatches(ballElement) {
     if (
       ballElement.positionX < this.player.positionX + this.player.width &&
@@ -65,7 +68,11 @@ class Game {
       ballElement.positionY < this.player.positionY + this.player.height &&
       ballElement.height + ballElement.positionY > this.player.positionY
     ) {
-      location.href = "./gameWinner.html";
+      this.ballGrab++;
+      console.log(this.ballGrab);
+      if (this.ballGrab / 9 === 3) {
+        location.href = "./gameWinner.html";
+      }
     }
   }
   removeBallsIfOutside(ballElement) {
