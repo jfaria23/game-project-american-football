@@ -4,7 +4,6 @@ class Game {
     this.defenders = [];
     this.balls = [];
     this.startGame();
-    this.ballGrab = 0;
   }
 
   startGame() {
@@ -19,7 +18,7 @@ class Game {
       this.defenders.forEach((defenderElement) => {
         defenderElement.moveLeft();
         this.detectCollision(defenderElement);
-        this.removeDefendersIfOutside(defenderElement); //working fine!!
+        this.removeDefendersIfOutside(defenderElement);
       });
     }, 50);
 
@@ -55,7 +54,7 @@ class Game {
       //1. remove elm from the dom
       defenderElement.domElement.remove();
 
-      //2. remove from the array of obstacles
+      //2. remove from the array of defenders
       this.defenders.shift();
     }
   }
@@ -75,7 +74,7 @@ class Game {
       //1. remove elm from the dom
       ballElement.domElement.remove();
 
-      //2. remove from the array of obstacles
+      //2. remove from the array of defenders
       this.balls.shift();
     }
   }
